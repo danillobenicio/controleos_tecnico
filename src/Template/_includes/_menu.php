@@ -50,12 +50,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="novo_chamado.php" class="nav-link">
-            <i class="fa-regular fa-edit"></i>
-            <p>Abrir Chamado</p>
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="chamados.php" class="nav-link">
             <i class="fa-regular fa-keyboard"></i>
             <p>Chamados</p>

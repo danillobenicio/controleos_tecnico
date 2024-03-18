@@ -24,7 +24,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Chamados do setor</h1>
+                            <h1>Chamados</h1>
                         </div>
 
                     </div>
@@ -37,17 +37,16 @@
                         <div class="card-header">
                             <h3 class="card-title">Pesquisar</h3>
                         </div>
-
                         <form role="form" method="post" action="meus_chamados.php">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tipo">Situação</label>
-                                    <select class="form-control" style="width: 100%;">
-                                        <option value="<?SITUACAO_CHAMADO_TODOS?>" selected="selected">Todos</option>
-                                        <option value="<?SITUACAO_CHAMADO_AGUARDANDO_ATENDIMENTO?>">Aguardando
+                                    <select class="form-control" style="width: 100%;" id="situacao" onchange="filtrarChamados(this.value)">
+                                        <option value="<?=SITUACAO_CHAMADO_TODOS?>" selected="selected">Todos</option>
+                                        <option value="<?=SITUACAO_CHAMADO_AGUARDANDO_ATENDIMENTO?>">Aguardando
                                             Atendimento</option>
-                                        <option value="<?SITUACAO_CHAMADO_EM_ATENDIMENTO?>">Em Atendimento</option>
-                                        <option value="<?SITUACAO_CHAMADO_ENCERRADO?>">Encerrados</option>
+                                        <option value="<?=SITUACAO_CHAMADO_EM_ATENDIMENTO?>">Em Atendimento</option>
+                                        <option value="<?=SITUACAO_CHAMADO_ENCERRADO?>">Encerrados</option>
                                     </select>
                                 </div>
                             </div>
@@ -64,28 +63,8 @@
                             </div>
 
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Data Abertura</th>
-                                            <th>Funcionário</th>
-                                            <th>Equipamento</th>
-                                            <th>Problema</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal_atendimento">Atender</button>
-                                                <button class="btn btn-xs btn-secondary" data-toggle="modal" data-target="#modal_detalhes">Ver detalhes</button>                          
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                <table class="table table-hover" id="table_result">
+                                    <!-- Infos vindo da chamados_ajax -->
                                 </table>
                             </div>
                         </div>
@@ -104,6 +83,10 @@
     <?php  
         include_once PATH . 'Template/_includes/_scripts.php';
     ?>
+     <script src="../../Resource/ajax/chamados_ajax.js"></script>
+     <script>
+        filtrarChamados();
+     </script>
 </body>
 
 </html>

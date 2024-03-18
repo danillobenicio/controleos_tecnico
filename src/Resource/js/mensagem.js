@@ -33,3 +33,18 @@ function mostrarMensagem(ret) {
     }
 
 }
+
+function mostrarMensagemCustomizada($msg, status) 
+{
+    switch (status) {
+        case "Error":
+            toastr.error($msg);
+            break;
+        case "Warning":
+            toastr.warning($msg);
+            break;
+        case "Success":
+            toastr.success($msg);
+            break;
+    }
+}

@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal_detalhes">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content" id="divCorModalSituacao">
+        <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Detalhes chamados</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -8,10 +8,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                <div class="form-group">          
 
                     <label>Equipamento</label>
-                    <span disabled class="form-control" id="equipamento" rows="2"></span>
+                    <span disabled class="form-control" id="equipamento" rows="2"></span> 
 
                     <br>
 
@@ -23,42 +23,36 @@
                     <label>Problema</label>
                     <textarea readonly class="form-control" id="problema" rows="2"></textarea>
 
-                    <br>
-
-                    <div id="tecAtendimento">
+                    <hr>
+                    <div id="tecnicoAtendimento">
                         <label>Data de Atendimento</label>
                         <span class="form-control" id="data_atendimento" name="data_atendimento"></span>
 
+                        <br>
+
                         <label>Técnico que iniciou atendimento</label>
                         <span disabled class="form-control" id="tec_atendimento" rows="2"></span>
-                    </div>
-                    
-
-                    <hr>
-                    <div id="tecEncerramento">
-
                         <br>
+                        <label>Laudo</label>
+                        <textarea readonly class="form-control" id="laudo" rows="2"></textarea>
+                    </div>
+                    <br>
 
+                    <div id="tecnicoEncerramento">
                         <label>Data encerramento</label>
-                        <span class="form-control" id="encerramento" rows="2"></span>
-
+                        <span class="form-control" id="encerramento" rows="2"></span> 
                         <br>
-
                         <label>Técnico que encerrou atendimento</label>
-                        <span class="form-control" id="tec_encerramento" rows="2"></span>
-
-                        <br>
-
+                        <span class="form-control" id="tec_encerramento" rows="2"></span> 
                     </div>
-
-                    <label>Laudo</label>
-                    <textarea readonly class="form-control" id="tec_encerramento" rows="2"></textarea>
+                    <br>
                 </div>
-
+                
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button class="btn btn-sm btn-primary" id="btn_acao">Atender / Finalizar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="iniciarAtendimento">Iniciar Atendimento</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="finalizarAtendimento">Finalizar Atendimento</button>
             </div>
         </div>
     </div>
