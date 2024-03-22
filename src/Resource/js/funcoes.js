@@ -1,6 +1,15 @@
 //#region Funções API
 function Base_Url_Api() {
-    return 'http://localhost/controleos/src/Resource/api/Tecnico_api.php';
+    return 'https://localhost/controleos/src/Resource/api/Tecnico_api.php';
+}
+
+function Base_Url_Intranet()
+{
+    return "https://localhost/controleosTecnico/src/View/";
+}
+
+function redirecionaPagina(pagina) {
+    window.location = Base_Url_Intranet() + pagina;
 }
 
 function headerSemAutenticacao() 
@@ -11,17 +20,20 @@ function headerSemAutenticacao()
     return header;
 }
 
-function headerComAutenticacao() 
+function headerComAutenticacao()
 {
     const header = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + GetTnk(),
+
     };
     return header;
 }
 
 function codigoLogado() 
 {
-    return 18;
+    const dados = GetTnkValue();
+    return dados.cod_user;
 }
 
 function limparNotificacoes(formID) {
@@ -119,4 +131,63 @@ function mostrarElemento(id, mostrar) {
         document.getElementById(id).classList.add("d-none");
     }
 
+}
+
+
+function AddTnk(t) 
+{
+    localStorage.setItem('user_tnk', t);
+}
+
+function GetTnkValue() 
+{
+    var token = GetTnk();
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var j = decodeURIComponent(window.atob(base64).split('').map(function
+    (c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    
+    }).join(''));
+
+    return JSON.parse(j);
+}
+
+function GetTnk() 
+{
+    if (localStorage.getItem('user_tnk') != null)
+        return localStorage.getItem('user_tnk');
+}
+
+function setNomeLogado(nome) 
+{
+    localStorage.setItem("nome_logado", nome);
+}
+
+function getNomeLogado() 
+{
+    return localStorage.getItem("nome_logado");
+}
+
+function MostrarNomeLogin() 
+{
+    if (localStorage.getItem('nome_logado') != null)
+        document.getElementById("nome_logado").innerHTML = getNomeLogado();
+}
+
+function ClearTnk() 
+{
+    localStorage.clear();
+}
+
+function Sair() 
+{
+    ClearTnk();
+    window.location.href = 'https://localhost/controleosTecnico/src/View/acesso/login.php';
+}
+
+function Verify() 
+{
+    if (localStorage.getItem('user_tnk') === null)
+        Sair();
 }

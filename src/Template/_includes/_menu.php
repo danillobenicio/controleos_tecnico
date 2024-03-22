@@ -15,7 +15,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
-    <img src="../../Template/dist/img/logoc.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
       style="opacity: .8">
     <span class="brand-text font-weight-light">ontrol OS | Técnico</span>
   </a>
@@ -28,7 +28,7 @@
         <img src="../../Template/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Usuário Logado</a>
+        <a href="#" class="d-block" id="nome_logado"></a>
       </div>
     </div>
 
@@ -45,7 +45,7 @@
         </li>
         <li class="nav-item">
           <a href="mudar_senha.php" class="nav-link">
-            <i class="fa-regular fa-user"></i>
+          <i class="fa-solid fa-lock"></i>
             <p>Alterar Senha</p>
           </a>
         </li>
@@ -56,7 +56,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
+          <a href="" onclick="Sair()" class="nav-link">
             <i class="fa-regular fa-exit"></i>
             <p>Sair</p>
           </a>
@@ -68,3 +68,6 @@
   </div>
   <!-- /.sidebar -->
 </aside>
+<script>
+  MostrarNomeLogin();
+</script>

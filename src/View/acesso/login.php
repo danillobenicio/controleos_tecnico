@@ -11,7 +11,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <b>Control</b>OS - Funcionário
+    <b>Control</b>OS - Técnico
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -38,7 +38,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" name="btn_logar" onclick="return validarCampos('formLogin')" class="btn btn-primary btn-block">Acessar</button>
+            <button type="button" name="btn_logar" onclick="acessar('formLogin')" class="btn btn-primary btn-block">Acessar</button>
           </div>
           <!-- /.col -->
         </div>

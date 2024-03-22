@@ -127,7 +127,10 @@
       <script src="../../Template/mask/jquery.mask.min.js"></script>
       <script src="../../Template/mask/mask.js"></script>
       <script src="../../Resource/ajax/usuario_ajax.js"></script>
-      <script>detalharMeusDados()</script>
+      <script>
+        Verify();
+        detalharMeusDados();
+      </script>
 </body>
 
 </html>

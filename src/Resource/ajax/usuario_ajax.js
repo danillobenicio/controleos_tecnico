@@ -182,3 +182,51 @@ async function alterarSenha(formID, formID2) {
         }
     }
 }
+
+async function acessar(formID) {
+
+    if (validarCampos(formID)) {
+
+        try {
+            const dados = {
+                endpoint: API_ACESSAR,
+                login_usuario: pegarValor("login"),
+                senha_usuario: pegarValor("senha")
+            }
+
+            load();
+
+            const response = await fetch(Base_Url_Api(), {
+                method: "POST",
+                headers: headerSemAutenticacao(),
+                body: JSON.stringify(dados)
+            })
+
+            if (!response.ok) {
+                throw new Error(MSG_ERRO_CALL_API);
+            }
+
+            const objDados = await response.json();
+
+            result = objDados.RESULT;
+
+            if (result == -7) {
+                mostrarMensagemCustomizada(MSG_USUARIO_NAO_ENCONTRADO, TOASTRERROR);
+                return;
+            }
+            // Add o token no LocalStorage
+            AddTnk(result);
+
+            const resultToken = GetTnkValue();
+
+            setNomeLogado(resultToken.nome_user);
+            
+            redirecionaPagina('tecnico/chamados.php');
+
+        } catch (error) {
+
+        } finally {
+            removerLoad();
+        }
+    }
+}
