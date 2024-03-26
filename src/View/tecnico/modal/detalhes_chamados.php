@@ -8,6 +8,8 @@
                 </button>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="id_chamado">
+                <input type="hidden" id="id_alocar">
                 <div class="form-group">          
 
                     <label>Equipamento</label>
@@ -51,8 +53,8 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="iniciarAtendimento">Iniciar Atendimento</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal" id="finalizarAtendimento">Finalizar Atendimento</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="iniciarAtendimento" onclick="atenderChamado()">Iniciar Atendimento</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="finalizarAtendimento" onclick="finalizarChamado()">Finalizar Atendimento</button>
             </div>
         </div>
     </div>

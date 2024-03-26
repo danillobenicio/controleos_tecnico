@@ -191,3 +191,11 @@ function Verify()
     if (localStorage.getItem('user_tnk') === null)
         Sair();
 }
+
+function habilitarCampo(id, bool_habilitado) {
+    if (bool_habilitado) {
+        document.getElementById(id).removeAttribute("disabled");
+    } else {
+        document.getElementById(id).setAttribute("disabled");
+    }
+}

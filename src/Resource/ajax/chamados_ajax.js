@@ -95,11 +95,14 @@ try {
     document.getElementById("equipamento").textContent = chamado.nome_tipo + " " + chamado.nome_modelo + " " + chamado.identificacao;
     document.getElementById("data_abertura").textContent = chamado.data_abertura;
     document.getElementById("problema").textContent = chamado.problema;
-    /*document.getElementById("data-atendimento").textContent = chamado.data_atendimento;
+    document.getElementById("id_chamado").value = chamado.id_chamado;
+    document.getElementById("data_atendimento").textContent = chamado.data_atendimento;
     document.getElementById("tec_atendimento").textContent = chamado.fk_id_tecnico_atendimento;
+    document.getElementById("id_alocar").value = chamado.fk_id_alocar;
+    
     document.getElementById("encerramento").textContent = chamado.data_encerramento;
     document.getElementById("tec_encerramento").textContent = chamado.fk_id_tecnico_encerramento;
-    document.getElementById("laudo").textContent = chamado.laudo;*/
+    document.getElementById("laudo").textContent = chamado.laudo;
 
 
     
@@ -124,6 +127,7 @@ try {
             mostrarElemento("tecnicoEncerramento", true);
             mostrarElemento("iniciarAtendimento", false);
             mostrarElemento("finalizarAtendimento", false);
+            habilitarCampo("laudo", true);
             break;
     }
 
@@ -148,5 +152,92 @@ function verificarSituacao(data_atendimento, data_encerramento) {
     }
 
     return situacao;
+
+}
+
+async function atenderChamado() {
+
+    try {
+        const idChamado = document.getElementById("id_chamado").value;
+        const dados = {
+            fkTecAtendimento: CodigoLogado(),
+            idChamado: idChamado,
+            enpoint: API_ATENDER_CHAMADO
+        }
+
+        const response = await fetch(Base_Url_Api(), {
+            method: 'POST',
+            headers: headerComAutenticacao(),
+            body: JSON.stringify(dados)
+        });
+
+        if (!response.ok) {
+            throw new Error(MSG_ERRO_CALL_API);
+        }
+
+        const objDados = await response.json();
+
+        if (objDados.RESULT == NAO_AUTORIZADO) {
+            Sair();
+            return;
+        }
+
+        if (objDados.RESULT == 1) {
+            mostrarMensagemCustomizada(MSG_CHAMADO_ATENDIMENTO, TOASTRSUCCESS);
+            filtrarChamados();
+        }
+
+    } catch (error) {
+        mostrarMensagemCustomizada(error.message);
+    } finally {
+        removerLoad();
+    }
+
+}
+
+async function finalizarChamado(formID) {
+
+    if (await validarCamposAsync(formID)) {
+        try {
+            const idChamado = document.getElementById("id_chamado").value;
+            const laudo = documento.getElementById("laudo").value;
+            const idAlocar = document.getElementById("id_alocar").value;
+
+            const dados = {
+                fkTecEncerramento: CodigoLogado(),
+                idChamado: idChamado,
+                enpoint: API_FINALIZAR_CHAMADO,
+                laudo: laudo,
+                idAlocar: idAlocar
+            }
+
+            const response = await fetch(Base_Url_Api(), {
+                method: 'POST',
+                headers: headerComAutenticacao(),
+                body: JSON.stringify(dados)
+            });
+
+            if (!response.ok) {
+                throw new Error(MSG_ERRO_CALL_API);
+            }
+
+            const objDados = await response.json();
+
+            if (objDados.RESULT == NAO_AUTORIZADO) {
+                Sair();
+                return;
+            }
+
+            if (objDados.RESULT == 1) {
+                mostrarMensagemCustomizada(MSG_CHAMADO_FINALIZADO, TOASTRSUCCESS);
+                filtrarChamados();
+            }
+
+        } catch (error) {
+            mostrarMensagemCustomizada(error.message);
+        } finally {
+            removerLoad();
+        }
+    }
 
 }

@@ -7,6 +7,8 @@ const API_ABRIR_CHAMADO = "abrirChamadoApi";
 const API_FILTRAR_CHAMADOS = "filtrarChamadosApi";
 const API_DETALHAR_CHAMADO = "detalharChamadoApi";
 const API_ACESSAR = "validarLoginApi";
+const API_ATENDER_CHAMADO = "atenderChamadoApi";
+const API_FINALIZAR_CHAMADO = "finalizarChamadoApi";
 
 const NAO_AUTORIZADO = -1000;
 
@@ -17,6 +19,8 @@ const MSG_ERRO = "Erro na operação, contate o suporte técnico";
 const MSG_TAMANHO_SENHA = "Senha deve ter no minímo 6 caracteres";
 const MSG_ERRO_SENHAS = "Senhas não conferem";
 const MSG_USUARIO_NAO_ENCONTRADO = "Usuário não encontrado";
+const MSG_CHAMADO_ATENDIMENTO = "Em atendimento";
+const MSG_CHAMADO_FINALIZADO = "Chamado finalizado";
 const TOASTRERROR = "Error";
 const TOASTRWARNING = "Warning";
 const TOASTRSUCCESS = "Success";
