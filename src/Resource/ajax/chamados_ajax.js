@@ -67,7 +67,6 @@ async function filtrarChamados() {
     }
 }
 
-
 async function detalharChamado(id) {
 
     const dados = {
@@ -97,7 +96,7 @@ try {
     document.getElementById("problema").textContent = chamado.problema;
     document.getElementById("id_chamado").value = chamado.id_chamado;
     document.getElementById("data_atendimento").textContent = chamado.data_atendimento;
-    document.getElementById("tec_atendimento").textContent = chamado.fk_id_tecnico_atendimento;
+    document.getElementById("tec_atendimento").textContent = chamado.tecnico_atendimento;
     document.getElementById("id_alocar").value = chamado.fk_id_alocar;
     
     document.getElementById("encerramento").textContent = chamado.data_encerramento;
@@ -156,21 +155,21 @@ function verificarSituacao(data_atendimento, data_encerramento) {
 }
 
 async function atenderChamado() {
-
     try {
         const idChamado = document.getElementById("id_chamado").value;
-        const dados = {
-            fkTecAtendimento: CodigoLogado(),
-            idChamado: idChamado,
-            enpoint: API_ATENDER_CHAMADO
-        }
 
+        const dados = {
+            fkTecAtendimento: codigoLogado(),
+            idChamado: idChamado,
+            endpoint: API_ATENDER_CHAMADO
+        }
+     
         const response = await fetch(Base_Url_Api(), {
             method: 'POST',
             headers: headerComAutenticacao(),
             body: JSON.stringify(dados)
         });
-
+    
         if (!response.ok) {
             throw new Error(MSG_ERRO_CALL_API);
         }
@@ -184,6 +183,7 @@ async function atenderChamado() {
 
         if (objDados.RESULT == 1) {
             mostrarMensagemCustomizada(MSG_CHAMADO_ATENDIMENTO, TOASTRSUCCESS);
+            $('#modal_detalhes').modal('hide');
             filtrarChamados();
         }
 
@@ -192,10 +192,9 @@ async function atenderChamado() {
     } finally {
         removerLoad();
     }
-
 }
 
-async function finalizarChamado(formID) {
+/*async function finalizarChamado(formID) {
 
     if (await validarCamposAsync(formID)) {
         try {
@@ -240,4 +239,4 @@ async function finalizarChamado(formID) {
         }
     }
 
-}
+}*/

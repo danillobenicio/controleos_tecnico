@@ -1,6 +1,6 @@
 <?php
 
- /* include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+/* include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
   use Src\_Public\Util;
 
@@ -14,11 +14,10 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="#" class="brand-link">
-    <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-      style="opacity: .8">
+  <!--<a href="#" class="brand-link">
+    <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">ontrol OS | Técnico</span>
-  </a>
+  </a>-->
 
   <!-- Sidebar -->
   <div class="sidebar">
@@ -45,7 +44,7 @@
         </li>
         <li class="nav-item">
           <a href="mudar_senha.php" class="nav-link">
-          <i class="fa-solid fa-lock"></i>
+            <i class="fa-solid fa-lock"></i>
             <p>Alterar Senha</p>
           </a>
         </li>
@@ -69,5 +68,5 @@
   <!-- /.sidebar -->
 </aside>
 <script>
-  MostrarNomeLogin();
+  //MostrarNomeLogin();
 </script>

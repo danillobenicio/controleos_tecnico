@@ -1,5 +1,5 @@
 <?php
-    include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,7 +7,7 @@
 <head>
     <?php
     include_once PATH . 'Template/_includes/_head.php';
-  ?>
+    ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -17,7 +17,7 @@
         <?php
         include_once PATH . 'Template/_includes/_topo.php';
         include_once PATH . 'Template/_includes/_menu.php';
-    ?>
+        ?>
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -42,11 +42,11 @@
                                 <div class="form-group">
                                     <label for="tipo">Situação</label>
                                     <select class="form-control" style="width: 100%;" id="situacao" onchange="filtrarChamados(this.value)">
-                                        <option value="<?=SITUACAO_CHAMADO_TODOS?>" selected="selected">Todos</option>
-                                        <option value="<?=SITUACAO_CHAMADO_AGUARDANDO_ATENDIMENTO?>">Aguardando
+                                        <option value="<?= SITUACAO_CHAMADO_TODOS ?>" selected="selected">Todos</option>
+                                        <option value="<?= SITUACAO_CHAMADO_AGUARDANDO_ATENDIMENTO ?>">Aguardando
                                             Atendimento</option>
-                                        <option value="<?=SITUACAO_CHAMADO_EM_ATENDIMENTO?>">Em Atendimento</option>
-                                        <option value="<?=SITUACAO_CHAMADO_ENCERRADO?>">Encerrados</option>
+                                        <option value="<?= SITUACAO_CHAMADO_EM_ATENDIMENTO ?>">Em Atendimento</option>
+                                        <option value="<?= SITUACAO_CHAMADO_ENCERRADO ?>">Encerrados</option>
                                     </select>
                                 </div>
                             </div>
@@ -71,23 +71,23 @@
                     </div>
                 </div>
                 <?php
-                    include_once 'modal/detalhes_chamados.php';
+                include_once 'modal/detalhes_chamados.php';
                 ?>
             </section>
         </div>
 
         <?php
         include_once PATH . 'Template/_includes/_footer.php'
-    ?>
+        ?>
     </div>
-    <?php  
-        include_once PATH . 'Template/_includes/_scripts.php';
+    <?php
+    include_once PATH . 'Template/_includes/_scripts.php';
     ?>
-     <script src="../../Resource/ajax/chamados_ajax.js"></script>
-     <script>
+    <script src="../../Resource/ajax/chamados_ajax.js"></script>
+    <script>
         Verify();
         filtrarChamados();
-     </script>
+    </script>
 </body>
 
 </html>
