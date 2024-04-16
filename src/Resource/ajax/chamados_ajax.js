@@ -100,10 +100,10 @@ try {
     document.getElementById("id_alocar").value = chamado.fk_id_alocar;
     
     document.getElementById("encerramento").textContent = chamado.data_encerramento;
-    document.getElementById("tec_encerramento").textContent = chamado.fk_id_tecnico_encerramento;
+    document.getElementById("tec_encerramento").textContent = chamado.tecnico_encerramento;
     document.getElementById("laudo").textContent = chamado.laudo;
 
-
+    //console.log(chamado.data_encerramento);
     
     const situacao_atual = verificarSituacao(chamado.data_atendimento, chamado.data_encerramento);
 
@@ -126,7 +126,10 @@ try {
             mostrarElemento("tecnicoEncerramento", true);
             mostrarElemento("iniciarAtendimento", false);
             mostrarElemento("finalizarAtendimento", false);
-            habilitarCampo("laudo", true);
+            document.getElementById("laudo").disabled = true;
+            document.getElementById("encerramento").disabled = true;
+            document.getElementById("tec_encerramento").disabled = true;
+            //habilitarCampo("laudo", true);
             break;
     }
 
@@ -194,22 +197,26 @@ async function atenderChamado() {
     }
 }
 
-/*async function finalizarChamado(formID) {
+async function finalizarChamado(formID) {
 
-    if (await validarCamposAsync(formID)) {
+    //if (await validarCamposAsync(formID)) {
         try {
             const idChamado = document.getElementById("id_chamado").value;
-            const laudo = documento.getElementById("laudo").value;
+            const laudo = document.getElementById("laudo").value;
             const idAlocar = document.getElementById("id_alocar").value;
 
+            if (laudo == '') {
+                mostrarMensagem(0);
+                return;
+            }
+
             const dados = {
-                fkTecEncerramento: CodigoLogado(),
+                fkTecEncerramento: codigoLogado(),
                 idChamado: idChamado,
-                enpoint: API_FINALIZAR_CHAMADO,
+                endpoint: API_FINALIZAR_CHAMADO,
                 laudo: laudo,
                 idAlocar: idAlocar
             }
-
             const response = await fetch(Base_Url_Api(), {
                 method: 'POST',
                 headers: headerComAutenticacao(),
@@ -221,6 +228,8 @@ async function atenderChamado() {
             }
 
             const objDados = await response.json();
+
+            console.log(objDados.RESULT);
 
             if (objDados.RESULT == NAO_AUTORIZADO) {
                 Sair();
@@ -237,6 +246,6 @@ async function atenderChamado() {
         } finally {
             removerLoad();
         }
-    }
+    //}
 
-}*/
+}
